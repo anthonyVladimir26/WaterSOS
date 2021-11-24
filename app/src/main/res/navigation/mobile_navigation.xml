@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.watersos.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home">
+
+        <action
+            android:id="@+id/action_HomeFragment_to_HomeSecondFragment"
+            app:destination="@id/nav_home_second" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_home_second"
+        android:name="com.example.watersos.ui.home.HomeSecondFragment"
+        android:label="@string/home_second"
+        tools:layout="@layout/fragment_home_second">
+        <action
+            android:id="@+id/action_HomeSecondFragment_to_HomeFragment"
+            app:destination="@id/nav_home" />
+
+        <argument
+            android:name="myArg"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_Reportar2"
+        android:name="com.example.watersos.fragments.nav_Reportar"
+        android:label="Reportar falla"
+        tools:layout="@layout/fragment_nav__reportar" />
+    <fragment
+        android:id="@+id/nav_Clima2"
+        android:name="com.example.watersos.fragments.nav_Clima"
+        android:label="Clima"
+        tools:layout="@layout/fragment_nav__clima" />
+    <fragment
+        android:id="@+id/nav_misReportes"
+        android:name="com.example.watersos.fragments.nav_misReportes"
+        android:label="mis reportes"
+        tools:layout="@layout/fragment_nav_mis_reportes" />
+    <fragment
+        android:id="@+id/aqua"
+        android:name="com.example.watersos.fragments.Aqua"
+        android:label="Nosotros"
+        tools:layout="@layout/fragment_aqua" />
+    <fragment
+        android:id="@+id/cerrarLogin"
+        android:name="com.example.watersos.fragments.cerrarLogin"
+        android:label="fragment_cerrar_login"
+        tools:layout="@layout/fragment_cerrar_login" />
+
+</navigation>

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1057634422773",
+    "firebase_url": "https://aqua-daac3.firebaseio.com",
+    "project_id": "aqua-daac3",
+    "storage_bucket": "aqua-daac3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1057634422773:android:35317d15ec1ce3df0b5abc",
+        "android_client_info": {
+          "package_name": "com.example.watersos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1057634422773-bv0mufi29sg4uhuu4jtthkqp83c062gq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALvBzDhZx_69r-ve7RXqQ-QA27nQOGSs0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1057634422773-bv0mufi29sg4uhuu4jtthkqp83c062gq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

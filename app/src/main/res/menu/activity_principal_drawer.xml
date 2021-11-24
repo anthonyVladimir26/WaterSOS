@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home_grey"
+            android:title="Inicio" />
+        <item
+            android:id="@+id/nav_Reportar2"
+            android:icon="@drawable/ic_note_add_grey"
+            android:title="Reportar" />
+        <item
+            android:id="@+id/nav_Clima2"
+            android:icon="@drawable/ic_wb_sunny_grey"
+            android:title="Clima" />
+        <item
+            android:id="@+id/nav_misReportes"
+            android:icon="@drawable/ic_folder_open_grey"
+            android:title="Mis reportes" />
+
+    </group>
+
+    <item android:title="Acerda de nosotros" >
+        <menu>
+            <item
+                android:id="@+id/aqua"
+                android:icon="@drawable/ic_apps_grey"
+                android:title="Acerca de aqua..." />
+
+            <item
+                android:id="@+id/cerrarLogin"
+                android:title="Cerrar sesión" />
+
+        </menu>
+    </item>
+</menu>

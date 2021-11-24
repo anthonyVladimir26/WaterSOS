@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/nino_/Downloads/WaterSOS/WaterSOS/app/src/main/res/drawable/ic_check.xml" value="0.2203125" />
+        <entry key="..\:/Users/nino_/Downloads/WaterSOS/WaterSOS/app/src/main/res/layout/activity_datos_reporte.xml" value="0.2" />
+        <entry key="..\:/Users/nino_/Downloads/WaterSOS/WaterSOS/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/nino_/Downloads/WaterSOS/WaterSOS/app/src/main/res/layout/activity_presentacion.xml" value="0.18" />
+        <entry key="..\:/Users/nino_/Downloads/WaterSOS/WaterSOS/app/src/main/res/layout/activity_principal.xml" value="0.14" />
+        <entry key="..\:/Users/nino_/Downloads/WaterSOS/WaterSOS/app/src/main/res/layout/app_bar_principal.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/nino_/Downloads/WaterSOS/WaterSOS/app/src/main/res/layout/cardview_reportes.xml" value="0.33" />
+        <entry key="..\:/Users/nino_/Downloads/WaterSOS/WaterSOS/app/src/main/res/layout/content_principal.xml" value="0.1" />
+        <entry key="..\:/Users/nino_/Downloads/WaterSOS/WaterSOS/app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="..\:/Users/nino_/Downloads/WaterSOS/WaterSOS/app/src/main/res/layout/fragment_nav__clima.xml" value="0.12817028985507245" />
+        <entry key="..\:/Users/nino_/Downloads/WaterSOS/WaterSOS/app/src/main/res/layout/fragment_nav__reportar.xml" value="0.33" />
+        <entry key="..\:/Users/nino_/Downloads/WaterSOS/WaterSOS/app/src/main/res/layout/fragment_nav_mis_reportes.xml" value="0.25" />
+        <entry key="..\:/Users/nino_/Downloads/WaterSOS/WaterSOS/app/src/main/res/layout/fragment_nosotros.xml" value="0.29444444444444445" />
+        <entry key="..\:/Users/nino_/Downloads/WaterSOS/WaterSOS/app/src/main/res/layout/fragment_slideshow.xml" value="0.1" />
+        <entry key="..\:/Users/nino_/Downloads/WaterSOS/WaterSOS/app/src/main/res/menu/activity_principal_drawer.xml" value="0.22" />
+        <entry key="..\:/Users/nino_/Downloads/WaterSOS/WaterSOS/app/src/main/res/menu/principal.xml" value="0.12" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
