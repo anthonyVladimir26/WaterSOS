@@ -68,18 +68,17 @@ import java.util.Map;
  */
 public class nav_Reportar extends Fragment {
 
-    EditText edtNumContrato, edtNumExt, edtFecha,edtDireccion,edtDescripcion;
-
+    //inicializamos los componentes que iran con la interfaz
+    EditText edtNumContrato, edtNumExt,edtDireccion,edtDescripcion;
     Button enviar;
-
     ImageButton imgBtnFoto, imgBtnUbicacion;
 
+    //creamos el bitmap en donde se guardara la imagen
     Bitmap bitmap;
 
+    //booleadnos que nos direan si se a tomado una foto o no se a elegido la ubicacion
     Boolean imagenElegida = false;
     Boolean ubicacionElegida = false;
-
-    ImageView imaCheckFoto,imgCheckUbi;
 
     AdminSQLiteOpenHelper baseDeDatos;
 
@@ -87,7 +86,7 @@ public class nav_Reportar extends Fragment {
 
     ProgressDialog progressDialog;
 
-    ProgressBar progressBarDireccion;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -98,17 +97,15 @@ public class nav_Reportar extends Fragment {
         //vinculamos con la intefaz
         edtNumContrato = view.findViewById(R.id.edtNumContrato);
         edtNumExt = view.findViewById(R.id.edtNumExt);
-        edtFecha = view.findViewById(R.id.edtFecha);
+
         edtDireccion = view.findViewById(R.id.edtDireccion);
         edtDescripcion = view.findViewById(R.id.edtDescripcion);
         enviar =view.findViewById(R.id.enviar);
         imgBtnFoto = view.findViewById(R.id.imgBtnCamara);
         imgBtnUbicacion = view.findViewById(R.id.imgBtnUbicacion);
 
-        imaCheckFoto = view.findViewById(R.id.img_check_foto);
-        imgCheckUbi = view.findViewById(R.id.img_check_ubi);
 
-        progressBarDireccion = view.findViewById(R.id.progressBarDireccion);
+
         //Toast.makeText(getActivity(), "Bienvenido a Reporte", Toast.LENGTH_LONG).show();
 
 
@@ -125,6 +122,7 @@ public class nav_Reportar extends Fragment {
         //pedimos el permiso de camara y mandamos los datos por si deniegan el permiso
         if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ) {
 
+            //iniciamos la camra
             requestPermissions(new String[]{Manifest.permission.CAMERA},200);
             Toast.makeText(getContext(), "se denegaron", Toast.LENGTH_SHORT).show();
 
@@ -166,8 +164,7 @@ public class nav_Reportar extends Fragment {
             @Override
             public void onClick(View view) {
                 ubicacionElegida = false;
-               // progressDialog.show();
-                progressBarDireccion.setVisibility(View.VISIBLE);
+
 
                /* if (ContextCompat.checkSelfPermission(getContext(),Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_DENIED){
                     if (!ActivityCompat.shouldShowRequestPermissionRationale((Activity) getContext(),Manifest.permission.ACCESS_FINE_LOCATION)){
@@ -315,7 +312,6 @@ public class nav_Reportar extends Fragment {
 
             bitmap = (Bitmap) data.getExtras().get("data");
 
-            imaCheckFoto.setVisibility(View.VISIBLE);
             imagenElegida = true;
         }
     }
@@ -338,7 +334,7 @@ public class nav_Reportar extends Fragment {
                 parametros.put("No_Contrato",edtNumContrato.getText().toString());
                 parametros.put("No_Ext",edtNumExt.getText().toString());
                 parametros.put("direccion",edtDireccion.getText().toString());
-                parametros.put("fecha",edtFecha.getText().toString());
+                //parametros.put("fecha",edtFecha.getText().toString());
                 parametros.put("descripcion",edtDescripcion.getText().toString());
 
                 return parametros;
