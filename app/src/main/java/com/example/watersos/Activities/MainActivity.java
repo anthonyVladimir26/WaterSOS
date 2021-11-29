@@ -42,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
 
         recuperarPreferencia();
 
+        this.deleteDatabase("databasename.db");
+
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -50,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
                 contraseña=edtPassword.getText().toString();
 
                 if (!usuario.isEmpty() && !contraseña.isEmpty()){
-                    validarUsuario("http://192.168.1.65:8080/reporfuagua/php/validar_usuario.php");
+                    validarUsuario("http://"+getString(R.string.ip)+"/reporfuagua/php/validar_usuario.php");
                 }else{
                     Toast.makeText(MainActivity.this , "No se permiten campos vacíos", Toast.LENGTH_LONG).show();
                 }

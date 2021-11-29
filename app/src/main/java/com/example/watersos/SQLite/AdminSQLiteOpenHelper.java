@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
 
     public AdminSQLiteOpenHelper(@Nullable Context context) {
-        super(context, "name.db", null, 1);
+        super(context, "Reporte.db", null, 1);
     }
 
     @Override
@@ -143,4 +143,34 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
         return imagen;
     }
 
+
+    public ArrayList<Reporte> verificarStatus(){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ArrayList<Reporte> listaReporte = new ArrayList<>();
+
+        Cursor cursor = null;
+
+        cursor = db.rawQuery("select * from reporte where estatus=0",null);
+
+        while (cursor.moveToNext()){
+            String clave_Reporte =cursor.getString(0);
+            int NO_Contrato = cursor.getInt(1);
+            int NO_Ext = cursor.getInt(2);
+            String direccion = cursor.getString(3);
+            double latitud = cursor.getDouble(4);
+            double longitud =cursor.getDouble(5);
+            String fecha = cursor.getString(6);
+            String descripcion = cursor.getString(7);
+            String seguimiento = cursor.getString(8);
+            String usuario = cursor.getString(9);
+            int estatus = cursor.getInt(10);
+
+            listaReporte.add(new Reporte(clave_Reporte,direccion,fecha,descripcion,seguimiento,usuario,NO_Contrato,NO_Ext,estatus,latitud,longitud));
+
+        }
+        cursor.close();
+        return listaReporte;
+    }
 }

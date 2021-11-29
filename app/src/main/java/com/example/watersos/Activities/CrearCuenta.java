@@ -50,7 +50,7 @@ public class CrearCuenta extends AppCompatActivity {
                 correo=edtCorreo.getText().toString();
 
                 if (!usuario.isEmpty()&& !nombre.isEmpty() && !contraseña.isEmpty() && !contraseña2.isEmpty() && !correo.isEmpty() && (contraseña.equals(contraseña2))){
-                    validarUsuario("http://192.168.1.65:8080/reporfuagua/php/crearUsuario.php");
+                    validarUsuario("http://"+getString(R.string.ip)+"/reporfuagua/php/crearUsuario.php");
                 }else{
                     Toast.makeText(CrearCuenta.this , "No se permiten campos vacíos Y/O las contraseñas deben ser iguales", Toast.LENGTH_LONG).show();
                 }

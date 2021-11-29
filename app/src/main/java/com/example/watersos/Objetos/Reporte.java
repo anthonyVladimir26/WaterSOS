@@ -21,6 +21,7 @@ public class Reporte {
         this.longitud = longitud;
     }
 
+
     public String getClave_Reporte() {
         return clave_Reporte;
     }

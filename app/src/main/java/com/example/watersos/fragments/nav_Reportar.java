@@ -18,6 +18,8 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -27,6 +29,8 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.PermissionChecker;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.provider.MediaStore;
 import android.provider.Settings;
@@ -48,10 +52,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.watersos.Activities.MainActivity;
+import com.example.watersos.JavaClass.EnviarDatos;
 import com.example.watersos.Objetos.Foto;
 import com.example.watersos.Objetos.Reporte;
 import com.example.watersos.R;
 import com.example.watersos.SQLite.AdminSQLiteOpenHelper;
+import com.example.watersos.ui.home.HomeFragment;
 
 import java.io.IOException;
 import java.net.URL;
@@ -86,7 +92,9 @@ public class nav_Reportar extends Fragment {
 
     ProgressDialog progressDialog;
 
+    int status =0;
 
+    EnviarDatos enviarDatos;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -108,6 +116,7 @@ public class nav_Reportar extends Fragment {
 
         //Toast.makeText(getActivity(), "Bienvenido a Reporte", Toast.LENGTH_LONG).show();
 
+        enviarDatos=new EnviarDatos(getContext());
 
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Buscando dirección...");
@@ -239,41 +248,68 @@ public class nav_Reportar extends Fragment {
                 SimpleDateFormat formato= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 
                 String fechaYHora = formato.format(date.getTime());
-                Toast.makeText(getContext(), fechaYHora, Toast.LENGTH_SHORT).show();
+
+                ConnectivityManager connectivityManager = (ConnectivityManager) getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+                NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+
 
                 if (imagenElegida == true && ubicacionElegida== true) {
+
+
                     SharedPreferences preferences = getContext().getSharedPreferences("preferenciaLogin", Context.MODE_PRIVATE);
                     String usuario = preferences.getString("usuario","");
+                    Foto foto;
+                    Reporte reporte;
+                    if (networkInfo != null && networkInfo.isConnected()) {
+                        Toast.makeText(getContext(), "hay internet", Toast.LENGTH_SHORT).show();
+                        status=1;
 
-                    Foto foto = new Foto(clave, bitmap);
-                    Reporte reporte = new Reporte(clave,edtDireccion.getText().toString(),fechaYHora,edtDescripcion.getText().toString(),"sin revisar",usuario,Integer.parseInt( edtNumContrato.getText().toString()),Integer.parseInt(edtNumExt.getText().toString()),0,latitud,longitud);
+                        foto = new Foto(clave, bitmap);
+                        reporte = new Reporte(clave,edtDireccion.getText().toString(),fechaYHora,edtDescripcion.getText().toString(),"sin revisar",usuario,Integer.parseInt( edtNumContrato.getText().toString()),Integer.parseInt(edtNumExt.getText().toString()),status,latitud,longitud);
 
+                        enviarDatos.enviarDatosMysql("http://"+getString(R.string.ip)+"/reporfuagua/php/guardarReporte.php",reporte);
+                    } else {
+                        Toast.makeText(getContext(), "no hay internet", Toast.LENGTH_SHORT).show();
+                        status =0;
 
+                        foto = new Foto(clave, bitmap);
+                        reporte = new Reporte(clave,edtDireccion.getText().toString(),fechaYHora,edtDescripcion.getText().toString(),"sin revisar",usuario,Integer.parseInt( edtNumContrato.getText().toString()),Integer.parseInt(edtNumExt.getText().toString()),status,latitud,longitud);
 
-                    boolean insertFoto = baseDeDatos.insertarFoto(foto);
-                    boolean insertReporte = baseDeDatos.insertarReporte(reporte);
-
-                    if (insertFoto == true && insertReporte == true) {
-                        Toast.makeText(getContext(), "registrado", Toast.LENGTH_SHORT).show();
                     }
-                    else {
-                        Toast.makeText(getContext(), "no se pudo registrar", Toast.LENGTH_SHORT).show();
-                    }
+
+
+
+
+                    enviarDatos.enviarDatosSQlite(reporte,foto);
 
                 }
-                else {
+                else if (imagenElegida == false){
                     Toast.makeText(getContext(), "por favor tome una foto", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(getContext(), "por favor permita detectar la ubicacion", Toast.LENGTH_SHORT).show();
                 }
                 //ejecutarServicio("http://192.168.1.66/reporfuagua/php/guardarReporte.php");
             }
 
         });
+        /*
+        if (edtNumContrato.length() ==0){
+
+            Toast.makeText(getActivity(), "El numero de contrato no debe quedar vacío ",Toast.LENGTH_LONG).show();
+
+        }if (edtNumExt.length()==0){
+            Toast.makeText(getActivity(), "El numero de exterior no debe quedar vacío ",Toast.LENGTH_LONG).show();
+
+        }if (edtDireccion.length()==0){
+            Toast.makeText(getActivity(), "La dirección no debe quedar vacía ",Toast.LENGTH_LONG).show();
+
+        }if (edtDescripcion.length()==0){
+            Toast.makeText(getActivity(), "La descripción no debe quedar vacía ",Toast.LENGTH_LONG).show();
+        }*/
 
 
 
-
-              // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_nav__reportar, container, false);
         return view;
     }
 
@@ -339,25 +375,9 @@ public class nav_Reportar extends Fragment {
 
                 return parametros;
             }
-        }; if (edtNumContrato.length() ==0){
-
-            Toast.makeText(getActivity(), "El numero de contrato no debe quedar vacío ",Toast.LENGTH_LONG).show();
-
-        }if (edtNumExt.length()==0){
-            Toast.makeText(getActivity(), "El numero de exterior no debe quedar vacío ",Toast.LENGTH_LONG).show();
-
-        }if (edtDireccion.length()==0){
-            Toast.makeText(getActivity(), "La dirección no debe quedar vacía ",Toast.LENGTH_LONG).show();
-
-        }if (edtDescripcion.length()==0){
-            Toast.makeText(getActivity(), "La descripción no debe quedar vacía ",Toast.LENGTH_LONG).show();
-        }else {
-            RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
-            requestQueue.add(stringRequest);
-
-        }
-
-
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+        requestQueue.add(stringRequest);
     }
 
 }
