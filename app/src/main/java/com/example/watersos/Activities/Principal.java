@@ -57,8 +57,13 @@ public class Principal extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
         SharedPreferences preferences = getSharedPreferences("preferenciaLogin", Context.MODE_PRIVATE);
-        nameUser = findViewById(R.id.nameUser);
-       // nameUser.setText("Gordo");
+       // navigationView.setNavigationItemSelectedListener((NavigationView.OnNavigationItemSelectedListener) Principal.this);
+
+
+        nameUser = navigationView.getHeaderView(0).findViewById(R.id.nameUser);
+        String usuario = preferences.getString("usuario", "");
+        nameUser.setText(usuario);
+
 
     }
 
