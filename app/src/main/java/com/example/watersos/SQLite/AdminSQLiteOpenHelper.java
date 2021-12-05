@@ -35,8 +35,7 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
 
         //creamos una tabla foto con sus atributos
         BaseDeDatos.execSQL("create table foto" +
-                "(idFoto INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "clave_Reporte text," +
+                "(clave_Reporte text PRIMARY KEY," +
                 "foto blob," +
                 "foreign key(clave_Reporte)references reporte(clave_Reporte))");
 
@@ -138,11 +137,18 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("select * from foto where clave_Reporte=? ",new String[]{clave});
         cursor.moveToFirst();
 
-        byte[] bitmap = cursor.getBlob(2);
+        byte[] bitmap = cursor.getBlob(1);
         Bitmap imagen = BitmapFactory.decodeByteArray(bitmap,0 ,bitmap.length);
         return imagen;
     }
 
+    public void actualizarEstatus (String clave){
+        SQLiteDatabase db= this.getWritableDatabase();
+        if (db!=null) {
+            db.execSQL("update reporte set estatus = '1' where clave_Reporte =?", new String[]{clave});
+            db.close();
+        }
+    }
 
     public ArrayList<Reporte> verificarStatus(){
 
@@ -173,4 +179,25 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
         cursor.close();
         return listaReporte;
     }
+
+    public void borrarDatosTablaReporte(){
+        SQLiteDatabase db= this.getWritableDatabase();
+        if (db!=null) {
+            db.delete("reporte",null,null);
+            db.close();
+        }
+    }
+
+    public void borrarDatosTablaFoto(){
+        SQLiteDatabase db= this.getWritableDatabase();
+        if (db!=null) {
+            db.delete("foto",null,null);
+            db.close();
+        }
+    }
+
+
+
+
+
 }

@@ -3,7 +3,6 @@ package com.example.watersos.Objetos;
 import android.graphics.Bitmap;
 
 public class Foto {
-    int idFoto;
     String clave_Reporte;
     Bitmap foto;
 
@@ -12,13 +11,7 @@ public class Foto {
         this.foto = foto;
     }
 
-    public int getIdFoto() {
-        return idFoto;
-    }
 
-    public void setIdFoto(int idFoto) {
-        this.idFoto = idFoto;
-    }
 
     public String getClave_Reporte() {
         return clave_Reporte;

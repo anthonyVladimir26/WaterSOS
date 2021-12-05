@@ -123,7 +123,7 @@ public class nav_Reportar extends Fragment {
         progressDialog.setCancelable(true);
 
         //llamamos la clase para generar la clave del reporte
-        final String clave = generateRandomString(5);
+
 
         //llamamos la base de datos de sqlite
         baseDeDatos = new AdminSQLiteOpenHelper(getContext());
@@ -139,12 +139,12 @@ public class nav_Reportar extends Fragment {
 
         //pedimos el permiso de ubicacion y mandamos los datos por si deniegan el permiso
         if (ContextCompat.checkSelfPermission(getContext(),Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_DENIED){
-            if (!ActivityCompat.shouldShowRequestPermissionRationale((Activity) getContext(),Manifest.permission.ACCESS_FINE_LOCATION)){
-                ActivityCompat.requestPermissions((Activity) getContext(),new String[]{Manifest.permission.ACCESS_FINE_LOCATION},1);
+            if (!ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),Manifest.permission.ACCESS_FINE_LOCATION)){
+                ActivityCompat.requestPermissions( getActivity(),new String[]{Manifest.permission.ACCESS_FINE_LOCATION},1);
             }
         }
 
-
+        enviarDatos.enviarReporteConConexion();
 
         //boton de la foto
         imgBtnFoto.setOnClickListener(new View.OnClickListener() {
@@ -154,7 +154,7 @@ public class nav_Reportar extends Fragment {
                 if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ) {
 
                     requestPermissions(new String[]{Manifest.permission.CAMERA},200);
-                    Toast.makeText(getContext(), "se denegaron", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "se denegaron", Toast.LENGTH_SHORT).show();
 
                 }
                 //en caso de tener los permisos se efectuara esto que abrira la camara
@@ -175,14 +175,19 @@ public class nav_Reportar extends Fragment {
                 ubicacionElegida = false;
 
 
-               /* if (ContextCompat.checkSelfPermission(getContext(),Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_DENIED){
-                    if (!ActivityCompat.shouldShowRequestPermissionRationale((Activity) getContext(),Manifest.permission.ACCESS_FINE_LOCATION)){
-                        ActivityCompat.requestPermissions((Activity) getContext(),new String[]{Manifest.permission.ACCESS_FINE_LOCATION},1);
+                if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_DENIED) {
+                    if (!ActivityCompat.shouldShowRequestPermissionRationale((Activity) getContext(), Manifest.permission.ACCESS_FINE_LOCATION)) {
+                        ActivityCompat.requestPermissions((Activity) getContext(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
                     }
                 }
-                else {
-*/
+                if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
+                    requestPermissions(new String[]{Manifest.permission.CAMERA}, 200);
+                    Toast.makeText(getActivity(), "se denegaron", Toast.LENGTH_SHORT).show();
+
+                } else {
+
+                    progressDialog.show();
                     LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
 
                     LocationListener locationListener = new LocationListener() {
@@ -190,23 +195,25 @@ public class nav_Reportar extends Fragment {
                         public void onLocationChanged(Location location) {
 
 
-                            if (ubicacionElegida== false) {
+                            if (ubicacionElegida == false) {
 
                                 latitud = location.getLatitude();
                                 longitud = location.getLongitude();
 
-                                progressDialog.dismiss();
+
                                 try {
 
                                     //Toast.makeText(getContext(), "longitud: " + longitud + "\n latitud: " + latitud, Toast.LENGTH_SHORT).show();
-                                    Geocoder geocoder = new Geocoder(getContext(), Locale.getDefault());
+                                    Geocoder geocoder = new Geocoder(getActivity(), Locale.getDefault());
                                     List<Address> list = geocoder.getFromLocation(latitud, longitud, 1);
                                     if (!list.isEmpty()) {
                                         Address DirCalle = list.get(0);
                                         edtDireccion.setText(DirCalle.getAddressLine(0));
                                         ubicacionElegida = true;
-
+                                        edtDireccion.setVisibility(View.VISIBLE);
+                                        progressDialog.dismiss();
                                     }
+
 
                                 } catch (IOException e) {
                                     e.printStackTrace();
@@ -232,10 +239,11 @@ public class nav_Reportar extends Fragment {
                         }
                     };
 
-                    int permisosCheck = ContextCompat.checkSelfPermission(getContext(),Manifest.permission.ACCESS_FINE_LOCATION);
 
-                    locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,0,0,locationListener);
+
+                    locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
                 }
+            }
 
         });
 
@@ -244,6 +252,7 @@ public class nav_Reportar extends Fragment {
             public void onClick(View v) {
                 Date date = new Date();
 
+                final String clave = generateRandomString(5);
 
                 SimpleDateFormat formato= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 
@@ -252,61 +261,75 @@ public class nav_Reportar extends Fragment {
                 ConnectivityManager connectivityManager = (ConnectivityManager) getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
                 NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
 
+                if (edtNumContrato.length() ==0){
 
-                if (imagenElegida == true && ubicacionElegida== true) {
+                    Toast.makeText(getActivity(), "El numero de contrato no debe quedar vacío ",Toast.LENGTH_LONG).show();
 
+                }
+                else if (edtNumExt.length()==0){
+                    Toast.makeText(getActivity(), "El numero de exterior no debe quedar vacío ",Toast.LENGTH_LONG).show();
+
+                }
+                else if (edtDireccion.length()==0){
+                    Toast.makeText(getActivity(), "La dirección no debe quedar vacía ",Toast.LENGTH_LONG).show();
+
+                }
+                else if (edtDescripcion.length()==0){
+                    Toast.makeText(getActivity(), "La descripción no debe quedar vacía ",Toast.LENGTH_LONG).show();
+                }
+                else if (imagenElegida == false){
+                    Toast.makeText(getActivity(), "por favor tome una foto",Toast.LENGTH_LONG).show();
+                }
+                else if (ubicacionElegida == false){
+                    Toast.makeText(getActivity(), "por favor tome una foto",Toast.LENGTH_LONG).show();
+                }
+                else {
 
                     SharedPreferences preferences = getContext().getSharedPreferences("preferenciaLogin", Context.MODE_PRIVATE);
-                    String usuario = preferences.getString("usuario","");
+                    String usuario = preferences.getString("usuario", "");
                     Foto foto;
                     Reporte reporte;
                     if (networkInfo != null && networkInfo.isConnected()) {
-                        Toast.makeText(getContext(), "hay internet", Toast.LENGTH_SHORT).show();
-                        status=1;
+
+                        status = 1;
 
                         foto = new Foto(clave, bitmap);
-                        reporte = new Reporte(clave,edtDireccion.getText().toString(),fechaYHora,edtDescripcion.getText().toString(),"sin revisar",usuario,Integer.parseInt( edtNumContrato.getText().toString()),Integer.parseInt(edtNumExt.getText().toString()),status,latitud,longitud);
-
-                        enviarDatos.enviarDatosMysql("http://"+getString(R.string.ip)+"/reporfuagua/php/guardarReporte.php",reporte);
-                    } else {
-                        Toast.makeText(getContext(), "no hay internet", Toast.LENGTH_SHORT).show();
-                        status =0;
-
+                        reporte = new Reporte(clave, edtDireccion.getText().toString(), fechaYHora, edtDescripcion.getText().toString(), "sin revisar", usuario, Integer.parseInt(edtNumContrato.getText().toString()), Integer.parseInt(edtNumExt.getText().toString()), status, latitud, longitud);
+                        Long consecutivo= System.currentTimeMillis()/1000;
+                        String nombreImagen=consecutivo.toString()+".jpg";
+                        enviarDatos.enviarDatosMysqlReporte("https://watersos01.000webhostapp.com/php/guardarReporte.php", reporte);
+                        enviarDatos.enviarDatosMysqlFoto("https://watersos01.000webhostapp.com/php/guardarFoto.php",foto,nombreImagen);
+                    }
+                    else {
+                        status = 0;
                         foto = new Foto(clave, bitmap);
-                        reporte = new Reporte(clave,edtDireccion.getText().toString(),fechaYHora,edtDescripcion.getText().toString(),"sin revisar",usuario,Integer.parseInt( edtNumContrato.getText().toString()),Integer.parseInt(edtNumExt.getText().toString()),status,latitud,longitud);
+                        reporte = new Reporte(clave, edtDireccion.getText().toString(), fechaYHora, edtDescripcion.getText().toString(), "sin revisar", usuario, Integer.parseInt(edtNumContrato.getText().toString()), Integer.parseInt(edtNumExt.getText().toString()), status, latitud, longitud);
 
                     }
 
+                    edtDescripcion.setText("");
+
+                    edtDireccion.setText("");
+                    edtDireccion.setVisibility(View.GONE);
+
+                    edtNumContrato.setText("");
+                    edtNumExt.setText("");
+
+                    imagenElegida= false;
+                    ubicacionElegida=false;
+
+                    bitmap =null;
 
 
-
-                    enviarDatos.enviarDatosSQlite(reporte,foto);
+                    enviarDatos.enviarDatosSQlite(reporte, foto);
 
                 }
-                else if (imagenElegida == false){
-                    Toast.makeText(getContext(), "por favor tome una foto", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    Toast.makeText(getContext(), "por favor permita detectar la ubicacion", Toast.LENGTH_SHORT).show();
-                }
-                //ejecutarServicio("http://192.168.1.66/reporfuagua/php/guardarReporte.php");
+
             }
 
         });
-        /*
-        if (edtNumContrato.length() ==0){
 
-            Toast.makeText(getActivity(), "El numero de contrato no debe quedar vacío ",Toast.LENGTH_LONG).show();
 
-        }if (edtNumExt.length()==0){
-            Toast.makeText(getActivity(), "El numero de exterior no debe quedar vacío ",Toast.LENGTH_LONG).show();
-
-        }if (edtDireccion.length()==0){
-            Toast.makeText(getActivity(), "La dirección no debe quedar vacía ",Toast.LENGTH_LONG).show();
-
-        }if (edtDescripcion.length()==0){
-            Toast.makeText(getActivity(), "La descripción no debe quedar vacía ",Toast.LENGTH_LONG).show();
-        }*/
 
 
 
@@ -350,34 +373,6 @@ public class nav_Reportar extends Fragment {
 
             imagenElegida = true;
         }
-    }
-
-    private void ejecutarServicio (String URL){
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Toast.makeText(getActivity(), "Envios Exitoso "+response, Toast.LENGTH_LONG).show();
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_LONG).show();
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String , String> parametros = new HashMap<String, String>();
-                parametros.put("No_Contrato",edtNumContrato.getText().toString());
-                parametros.put("No_Ext",edtNumExt.getText().toString());
-                parametros.put("direccion",edtDireccion.getText().toString());
-                //parametros.put("fecha",edtFecha.getText().toString());
-                parametros.put("descripcion",edtDescripcion.getText().toString());
-
-                return parametros;
-            }
-        };
-        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
-        requestQueue.add(stringRequest);
     }
 
 }

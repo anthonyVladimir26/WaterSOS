@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
         recuperarPreferencia();
 
-        this.deleteDatabase("databasename.db");
+        this.deleteDatabase("Reporte.db");
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
                 contraseña=edtPassword.getText().toString();
 
                 if (!usuario.isEmpty() && !contraseña.isEmpty()){
-                    validarUsuario("http://"+getString(R.string.ip)+"/reporfuagua/php/validar_usuario.php");
+                    validarUsuario("https://watersos01.000webhostapp.com/php/validar_usuario.php");
                 }else{
                     Toast.makeText(MainActivity.this , "No se permiten campos vacíos", Toast.LENGTH_LONG).show();
                 }

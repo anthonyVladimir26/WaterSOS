@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.watersos.JavaClass.EnviarDatos;
 import com.example.watersos.R;
 
 
@@ -16,15 +17,21 @@ import com.example.watersos.R;
  */
 public class Aqua extends Fragment {
 
-    public Aqua() {
-        // Required empty public constructor
-    }
 
+    EnviarDatos enviarDatos;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        View view =inflater.inflate(R.layout.fragment_aqua, container, false);
+
+        enviarDatos = new EnviarDatos(getContext());
+
+        enviarDatos.enviarReporteConConexion();
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_aqua, container, false);
+        return view;
+
+
     }
 }
