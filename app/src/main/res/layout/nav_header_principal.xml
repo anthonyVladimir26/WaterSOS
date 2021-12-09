@@ -39,13 +39,15 @@
             android:textSize="30dp" />
 
     </LinearLayout>
+
     <TextView
         android:id="@+id/nameUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:text="nombre"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textStyle="bold" />
 
 
 

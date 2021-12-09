@@ -31,7 +31,7 @@
                 android:title="Acerca de aqua..." />
 
             <item
-                android:icon="@mipmap/pipe_water_5925"
+                android:icon="@drawable/ic_cancel"
                 android:id="@+id/cerrarLogin"
                 android:title="Cerrar sesión" />
 
