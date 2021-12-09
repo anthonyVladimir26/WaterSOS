@@ -1,6 +1,8 @@
 package com.example.watersos.Activities;
 
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -38,6 +40,9 @@ public class CrearCuenta extends AppCompatActivity {
         edtPassword=findViewById(R.id.edtPassword);
         edtPassword2=findViewById(R.id.edtPassword2);
         btnCuenta=findViewById(R.id.btnCuenta);
+
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.toolbar)));
+
 
         btnCuenta.setOnClickListener(new View.OnClickListener() {
             @Override

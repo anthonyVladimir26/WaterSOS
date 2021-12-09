@@ -123,8 +123,7 @@ public class nav_misReportes extends Fragment {
                 }
 
                
-                rlReportes.setRefreshing(false);
-                mostrarDatosSqlite();
+
             }
         }, new Response.ErrorListener() {
             @Override
@@ -163,6 +162,9 @@ public class nav_misReportes extends Fragment {
                     }
 
                 }
+
+                rlReportes.setRefreshing(false);
+                mostrarDatosSqlite();
 
             }
         }, new Response.ErrorListener() {

@@ -1,22 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
-    <TextView
-        android:id="@+id/text_home"
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="?attr/actionBarSize"
+    >
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints"
+
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Por qué es importante cuidar el agua"
+
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+
+            android:layout_marginTop="10dp">
+            
+            <ImageView
+                android:layout_width="250dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:src="@mipmap/agua_cuerpo"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textSize="13dp"
+                android:gravity="center_horizontal"
+                android:text="El agua es importante para nuestra salud
+Médicos, científicos, nutricionistas y otros especialistas de la salud recomiendan beber entre un litro y medio y dos litros de agua al día, pero ¿por qué? La respuesta es que el agua es el elemento más necesario para nuestra vida. Nuestro cuerpo está formado en un 70% de agua, el 95% del peso de nuestro cerebro es agua, nuestra sangre contiene un 85% de agua y nuestros pulmones un 90%. Cada célula de nuestro cuerpo contiene alrededor de un 70-80% de agua. Pero el agua también cumple funciones a parte de la hidratación de nuestras células y órganos."/>
+            
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp">
+
+            <ImageView
+                android:layout_width="250dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:src="@mipmap/lave_agua"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textSize="13dp"
+                android:gravity="center_horizontal"
+                android:text="El agua es escasa
+Otra de las razones por la que es muy importante cuidar el agua es su escasez. El agua dulce es escasa, pero el agua dulce potable es aún más escasa y no está igualmente repartida por el planeta"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp">
+
+            <ImageView
+                android:layout_width="250dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:src="@mipmap/llave_tierra"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textSize="13dp"
+                android:gravity="center_horizontal"
+                android:text="El agua en el medio ambiente
+Si para los seres humanos el agua es importante, también lo es para el resto de seres vivos. Las plantas necesitan agua para hacer la fotosíntesis y los animales necesitan beber agua al igual que nosotros para hidratarse y que su organismo realice el resto de funciones."/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp">
+
+            <ImageView
+                android:layout_width="250dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:src="@mipmap/tubo_agua"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textSize="13dp"
+                android:gravity="center_horizontal"
+                android:layout_marginBottom="20dp"
+                android:text="La calidad del agua también importa
+Como hemos visto la existencia de agua y su cantidad es muy importante y, por ello, es necesario cuidarla. Pero la calidad del agua es aún más importante, ya que beber agua contaminada puede ser peor que incluso no tener agua. El agua contaminada es fuente de enfermedades, infecciones e incluso provoca la muerte. Según datos de la Organización Mundial de la Salud (OMS) 844 millones de personas no tienen acceso a un servicio mínimo de agua potable y unos 2000 millones de personas toman agua de fuentes de agua potable contaminadas por heces."/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
+</RelativeLayout>

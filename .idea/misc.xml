@@ -4,22 +4,25 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/nino_/Downloads/WaterSOS/WaterSOS/app/src/main/res/drawable/ic_check.xml" value="0.2203125" />
+        <entry key="..\:/Users/nino_/Downloads/WaterSOS/WaterSOS/app/src/main/res/drawable/side_nav_bar.xml" value="0.9458333333333333" />
         <entry key="..\:/Users/nino_/Downloads/WaterSOS/WaterSOS/app/src/main/res/layout/activity_datos_reporte.xml" value="0.22" />
         <entry key="..\:/Users/nino_/Downloads/WaterSOS/WaterSOS/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/nino_/Downloads/WaterSOS/WaterSOS/app/src/main/res/layout/activity_presentacion.xml" value="0.18" />
         <entry key="..\:/Users/nino_/Downloads/WaterSOS/WaterSOS/app/src/main/res/layout/activity_principal.xml" value="0.5" />
-        <entry key="..\:/Users/nino_/Downloads/WaterSOS/WaterSOS/app/src/main/res/layout/app_bar_principal.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/nino_/Downloads/WaterSOS/WaterSOS/app/src/main/res/layout/app_bar_principal.xml" value="0.67" />
         <entry key="..\:/Users/nino_/Downloads/WaterSOS/WaterSOS/app/src/main/res/layout/cardview_reportes.xml" value="1.0" />
         <entry key="..\:/Users/nino_/Downloads/WaterSOS/WaterSOS/app/src/main/res/layout/content_principal.xml" value="0.5" />
-        <entry key="..\:/Users/nino_/Downloads/WaterSOS/WaterSOS/app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="..\:/Users/nino_/Downloads/WaterSOS/WaterSOS/app/src/main/res/layout/fragment_aqua.xml" value="0.9" />
+        <entry key="..\:/Users/nino_/Downloads/WaterSOS/WaterSOS/app/src/main/res/layout/fragment_home.xml" value="0.5467224546722455" />
         <entry key="..\:/Users/nino_/Downloads/WaterSOS/WaterSOS/app/src/main/res/layout/fragment_nav__clima.xml" value="0.75" />
         <entry key="..\:/Users/nino_/Downloads/WaterSOS/WaterSOS/app/src/main/res/layout/fragment_nav__reportar.xml" value="0.7115384615384616" />
         <entry key="..\:/Users/nino_/Downloads/WaterSOS/WaterSOS/app/src/main/res/layout/fragment_nav_mis_reportes.xml" value="0.25" />
         <entry key="..\:/Users/nino_/Downloads/WaterSOS/WaterSOS/app/src/main/res/layout/fragment_nosotros.xml" value="0.29444444444444445" />
         <entry key="..\:/Users/nino_/Downloads/WaterSOS/WaterSOS/app/src/main/res/layout/fragment_slideshow.xml" value="0.9" />
-        <entry key="..\:/Users/nino_/Downloads/WaterSOS/WaterSOS/app/src/main/res/layout/nav_header_principal.xml" value="0.8166666666666667" />
+        <entry key="..\:/Users/nino_/Downloads/WaterSOS/WaterSOS/app/src/main/res/layout/nav_header_principal.xml" value="0.2" />
         <entry key="..\:/Users/nino_/Downloads/WaterSOS/WaterSOS/app/src/main/res/menu/activity_principal_drawer.xml" value="0.22" />
         <entry key="..\:/Users/nino_/Downloads/WaterSOS/WaterSOS/app/src/main/res/menu/principal.xml" value="0.12" />
+        <entry key="..\:/Users/nino_/Downloads/WaterSOS/WaterSOS/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="1.0583333333333333" />
       </map>
     </option>
   </component>

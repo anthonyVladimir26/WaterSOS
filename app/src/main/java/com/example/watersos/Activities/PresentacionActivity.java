@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -23,6 +24,7 @@ public class PresentacionActivity extends AppCompatActivity {
 
         ProgressBar progressBar=findViewById(R.id.progressBar);
         progressBar.setVisibility(View.VISIBLE);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.toolbar)));
 
         new Handler().postDelayed(new Runnable() {
             @Override
