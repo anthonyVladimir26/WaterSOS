@@ -26,14 +26,16 @@ public class DatosReporteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_datos_reporte);
 
+        //llamamos los componentes de la interfaz
         txvNumContrata = findViewById(R.id.textView_num_contrato);
         txvNumExterior = findViewById(R.id.textView_num_exterior);
         txvFechaYHora = findViewById(R.id.textView_fecha_hora);
         txvDireccion = findViewById(R.id.textView_direccion);
         txvDescripcion = findViewById(R.id.textView_descripcion);
-
         imageView = findViewById(R.id.imageViewReporte);
 
+
+        //llamamos los datos de la consulta de la pagina anteriso
         clave = getIntent().getStringExtra("clave");
         numContrata = getIntent().getIntExtra("numContrato",0);
         numExterior = getIntent().getIntExtra("numExterior",0);
@@ -41,12 +43,14 @@ public class DatosReporteActivity extends AppCompatActivity {
         direccion = getIntent().getStringExtra("direccion");
         descripcion = getIntent().getStringExtra("descripcion");
 
+        //inicializamos la base de datos sqlite
         baseDeDatos = new AdminSQLiteOpenHelper(this);
 
+        //llamamos la imagen de la base de datos sqlite
         Bitmap bitmap = baseDeDatos.conseguirImagen(clave);
 
+        //mandamos los datos a la interfaz
         imageView.setImageBitmap(bitmap);
-
         txvNumContrata.setText(numContrata+"");
         txvNumExterior.setText(numExterior+"");
         txvFechaYHora.setText(fechaYhora);
