@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     EditText edtUsuario, edtPassword;
     Button btnLogin;
     Button btnCuenta;
-    String usuario, contraseña;
+    String usuario, contrasena;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,9 +52,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 usuario=edtUsuario.getText().toString();
-                contraseña=edtPassword.getText().toString();
+                contrasena=edtPassword.getText().toString();
 
-                if (!usuario.isEmpty() && !contraseña.isEmpty()){
+                if (!usuario.isEmpty() && !contrasena.isEmpty()){
                     validarUsuario("https://watersos01.000webhostapp.com/php/validar_usuario.php");
                 }else{
                     Toast.makeText(MainActivity.this , "No se permiten campos vacíos", Toast.LENGTH_LONG).show();
@@ -81,7 +81,6 @@ public class MainActivity extends AppCompatActivity {
                     guardarPreferencia();
                     Intent intent = new Intent(getApplicationContext(), Principal.class);
                     startActivity(intent);
-                    finish();
                 } else{
                     Toast.makeText(MainActivity.this, "El usuario y/o contraseña són incorrectos o bien usuario bloqueado", Toast.LENGTH_LONG).show();
                 }
@@ -96,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> parametros= new HashMap<String, String>();
                 parametros.put("usuario",usuario);
-                parametros.put("contraseña",contraseña);
+                parametros.put("password",contrasena);
                 return parametros;
             }
         };
@@ -109,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("preferenciaLogin", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("usuario",usuario);
-        editor.putString("contraseña",contraseña);
+        editor.putString("contraseña",contrasena);
         editor.putBoolean("sesion",true);
         editor.commit();
 

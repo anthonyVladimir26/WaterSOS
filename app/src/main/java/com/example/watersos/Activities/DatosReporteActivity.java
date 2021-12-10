@@ -3,6 +3,7 @@ package com.example.watersos.Activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Bitmap;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -34,6 +35,8 @@ public class DatosReporteActivity extends AppCompatActivity {
         txvDescripcion = findViewById(R.id.textView_descripcion);
         imageView = findViewById(R.id.imageViewReporte);
 
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.toolbar)));
+        getSupportActionBar().setTitle("Reporte");
 
         //llamamos los datos de la consulta de la pagina anteriso
         clave = getIntent().getStringExtra("clave");

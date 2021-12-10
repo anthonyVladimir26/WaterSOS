@@ -57,6 +57,7 @@ import com.example.watersos.Objetos.Foto;
 import com.example.watersos.Objetos.Reporte;
 import com.example.watersos.R;
 import com.example.watersos.SQLite.AdminSQLiteOpenHelper;
+
 import com.example.watersos.ui.home.HomeFragment;
 
 import java.io.IOException;
@@ -95,6 +96,9 @@ public class nav_Reportar extends Fragment {
     int status =0;
 
     EnviarDatos enviarDatos;
+
+    Activity activity;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -323,13 +327,14 @@ public class nav_Reportar extends Fragment {
 
                     enviarDatos.enviarDatosSQlite(reporte, foto);
 
+                    //cambiaFragment.cambiarInterfaz();
+
+                    
                 }
 
             }
 
         });
-
-
 
 
 
@@ -375,4 +380,19 @@ public class nav_Reportar extends Fragment {
         }
     }
 
+/*
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+
+        if (context instanceof Activity){
+            this.activity = (Activity) context;
+            cambiaFragment = (iCambiaFragment) this.activity;
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+    }*/
 }

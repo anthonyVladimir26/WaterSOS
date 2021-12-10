@@ -23,16 +23,16 @@
 
     </group>
 
-    <item android:title="Acerda de nosotros" >
+    <item android:title="Acerca de nosotros">
         <menu>
             <item
                 android:id="@+id/aqua"
                 android:icon="@drawable/ic_apps_grey"
-                android:title="Acerca de aqua..." />
+                android:title="Acerca de WaterSOS..." />
 
             <item
-                android:icon="@drawable/ic_cancel"
                 android:id="@+id/cerrarLogin"
+                android:icon="@drawable/ic_cancel"
                 android:title="Cerrar sesión" />
 
         </menu>

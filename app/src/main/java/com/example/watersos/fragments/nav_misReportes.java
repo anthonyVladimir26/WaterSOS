@@ -174,7 +174,7 @@ public class nav_misReportes extends Fragment {
             }
         });
 
-        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
         requestQueue.add(jsonArrayRequest);
     }
 
@@ -196,7 +196,7 @@ public class nav_misReportes extends Fragment {
                     }
                 }
         );
-        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
         requestQueue.add(peticion);
 
     }
@@ -219,7 +219,7 @@ public class nav_misReportes extends Fragment {
             baseDeDatos.borrarDatosTablaFoto();
 
             obtenerDatosReporte("https://watersos01.000webhostapp.com/php/consultarReporte.php?usuario="+usuario);
-
+            rlReportes.setRefreshing(false);
         }else {
 
             rlReportes.setRefreshing(true);
